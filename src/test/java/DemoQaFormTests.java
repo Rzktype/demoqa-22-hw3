@@ -33,7 +33,10 @@ public class DemoQaFormTests {
         $("label[for='hobbies-checkbox-3']").click();
         $("label[for='hobbies-checkbox-2']").click();
         $("#uploadPicture").uploadFromClasspath("1.bmp");
-
+        $("#currentAddress").setValue("86 Tatishcheva str., Yekaterinburg, Sverdlovsk region, 620028");
+        $("#react-select-3-input").setValue("Haryana").pressEnter();
+        $("#react-select-4-input").setValue("Karnal").pressEnter();
+        $(".btn-primary").click();
 
             sleep(6000);
         }
