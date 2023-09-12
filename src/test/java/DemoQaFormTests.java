@@ -1,11 +1,9 @@
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
-import static org.openqa.selenium.remote.tracing.EventAttribute.setValue;
 
 public class DemoQaFormTests {
     @BeforeAll
@@ -13,17 +11,21 @@ public class DemoQaFormTests {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
         Configuration.pageLoadStrategy = "eager";
+        // Configuration.holdBrowserOpen = false;
     }
-        @Test
-             void fillFormtest() {
+
+    @Test
+    void fillFormTest() {
         open("/automation-practice-form");
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
 
         $("#firstName").setValue("Dmitry");
         $("#lastName").setValue("Volkov");
         $("#userEmail").setValue("DmitryVolkov@mail.ru").pressEnter();
         $(".custom-control-label").click();
         $("#userNumber").setValue("9003030333");
-        $("#dateOfBirthInput").click();           //setValue("10.11.1990").pressEnter(); не знаю как просто ввести ?//
+        $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption(5);
         $(".react-datepicker__year-select").selectOption("1993");
         $(".react-datepicker__day--012").click();
@@ -38,8 +40,17 @@ public class DemoQaFormTests {
         $("#react-select-4-input").setValue("Karnal").pressEnter();
         $(".btn-primary").click();
 
-            sleep(6000);
-        }
-
-
+        // Checks
+        $(".table-responsive").shouldHave(
+                text("Dmitry Volkov"), // Check Student Name
+                text("DmitryVolkov@mail.ru"), // Check Student Email
+                text("Male"), // Check Gender
+                text("9003030333"), // Mobile Phone
+                text("12 June,1993"), // Check Date of Birth
+                text("Maths"), // Check Subjects
+                text("Sports, Music"), // Check Hobbies
+                text("1.bmp"), // Check Picture
+                text("86 Tatishcheva str., Yekaterinburg, Sverdlovsk region, 620028"), // Check Address
+                text("Haryana Karnal")); // Check State and City
+    }
 }
