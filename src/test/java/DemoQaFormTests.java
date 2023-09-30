@@ -1,6 +1,7 @@
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pages.UserInfoPage;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
@@ -14,17 +15,18 @@ public class DemoQaFormTests {
         // Configuration.holdBrowserOpen = false;
     }
 
+    UserInfoPage userInfoPage = new UserInfoPage();
+
     @Test
     void fillFormTest() {
-        open("/automation-practice-form");
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
+        userInfoPage.openPage()
+                .setFirstName("Dmitry")
+                .setLastName("Volkov")
+                .setUserEmail("DmitryVolkov@mail.ru")
+                .setGender()
+                .setUserNumber("9003030333");
 
-        $("#firstName").setValue("Dmitry");
-        $("#lastName").setValue("Volkov");
-        $("#userEmail").setValue("DmitryVolkov@mail.ru").pressEnter();
-        $(".custom-control-label").click();
-        $("#userNumber").setValue("9003030333");
+
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption(5);
         $(".react-datepicker__year-select").selectOption("1993");
