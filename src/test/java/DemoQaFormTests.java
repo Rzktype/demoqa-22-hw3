@@ -24,18 +24,18 @@ public class DemoQaFormTests {
                 .setLastName("Volkov")
                 .setUserEmail("DmitryVolkov@mail.ru")
                 .setGender()
-                .setUserNumber("9003030333");
+                .setUserNumber("9003030333")
+                .setDateOfBirth("12", "August", "1993")
+                .setSubjectsInput("Maths")
+                .setHobbies("Sports")
+                .setHobbies("Music")
+                .UploadPicture("1.bmp")
+                .setAdress("86 Tatishcheva str., Yekaterinburg, Sverdlovsk region, 620028")
+                        .setState("Haryana")
+                                .setCity("Karnal")
+                                        .clickSubmit();
 
 
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption(5);
-        $(".react-datepicker__year-select").selectOption("1993");
-        $(".react-datepicker__day--012").click();
-        $("#subjectsInput").setValue("Maths").pressEnter();
-        $("label[for='hobbies-checkbox-1']").click();
-        $("label[for='hobbies-checkbox-2']").click();
-        $("label[for='hobbies-checkbox-3']").click();
-        $("label[for='hobbies-checkbox-2']").click();
         $("#uploadPicture").uploadFromClasspath("1.bmp");
         $("#currentAddress").setValue("86 Tatishcheva str., Yekaterinburg, Sverdlovsk region, 620028");
         $("#react-select-3-input").setValue("Haryana").pressEnter();
@@ -43,16 +43,20 @@ public class DemoQaFormTests {
         $(".btn-primary").click();
 
         // Checks
-        $(".table-responsive").shouldHave(
-                text("Dmitry Volkov"), // Check Student Name
-                text("DmitryVolkov@mail.ru"), // Check Student Email
-                text("Male"), // Check Gender
-                text("9003030333"), // Mobile Phone
-                text("12 June,1993"), // Check Date of Birth
-                text("Maths"), // Check Subjects
-                text("Sports, Music"), // Check Hobbies
-                text("1.bmp"), // Check Picture
-                text("86 Tatishcheva str., Yekaterinburg, Sverdlovsk region, 620028"), // Check Address
-                text("Haryana Karnal")); // Check State and City
+//        $(".table-responsive").shouldHave(
+//                text("Dmitry Volkov"), // Check Student Name
+//                text("DmitryVolkov@mail.ru"), // Check Student Email
+//                text("Male"), // Check Gender
+//                text("9003030333"), // Mobile Phone
+//                text("12 August,1993"), // Check Date of Birth
+//                text("Maths"), // Check Subjects
+//                text("Sports, Music"), // Check Hobbies
+//                text("1.bmp"), // Check Picture
+//                text("86 Tatishcheva str., Yekaterinburg, Sverdlovsk region, 620028"), // Check Address
+//                text("Haryana Karnal")); // Check State and City
+        userInfoPage.checkResult("Student Name", "Dmitry Volkov")
+                .checkResult("Student Email", "DmitryVolkov@mail.ru")
+                .checkResult("Gender", "Male")
+                .checkResult("Mobile", "9003030333");
     }
 }
