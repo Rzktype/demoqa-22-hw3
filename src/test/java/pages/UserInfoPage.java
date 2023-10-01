@@ -2,7 +2,6 @@ package pages;
 
 
 import com.codeborne.selenide.SelenideElement;
-import org.checkerframework.checker.units.qual.C;
 import pages.components.CalendarComponent;
 
 import static com.codeborne.selenide.Condition.text;
@@ -25,7 +24,7 @@ public class UserInfoPage {
             uploadPictureInput = $("#uploadPicture"),
             currentAddressTextArea = $("#currentAddress"),
             stateDropDown = $("#react-select-3-input"),
-            cityDropDown = $("#react-select-3-input"),
+            cityDropDown = $("#react-select-4-input"),
             submitButton = $(".btn-primary");
 
 
@@ -71,13 +70,13 @@ public class UserInfoPage {
         return this;
     }
 
-    public UserInfoPage setSubjectsInput(String value) {
-        subjectsInput.setValue(value).pressEnter();
+    public UserInfoPage setSubjectsInput(String subject) {
+        subjectsInput.setValue(subject).pressEnter();
         return this;
     }
 
-    public UserInfoPage setHobbies(String value) {
-        hobbiesCheckboxes.setValue(value).click();
+    public UserInfoPage setHobbies(String hobby) {
+        hobbiesCheckboxes.$(byText(hobby)).click();
         return this;
     }
 
@@ -85,22 +84,27 @@ public class UserInfoPage {
         uploadPictureInput.uploadFromClasspath(filename);
         return this;
     }
+
     public UserInfoPage setAdress(String value) {
         currentAddressTextArea.setValue(value);
         return this;
     }
-public UserInfoPage setState(String value){
-    stateDropDown.setValue(value);
-    return this;
-}
-    public UserInfoPage setCity(String value){
-        cityDropDown.setValue(value);
+
+    public UserInfoPage setState(String state) {
+        stateDropDown.setValue(state).pressEnter();
         return this;
     }
-    public UserInfoPage clickSubmit(){
+
+    public UserInfoPage setCity(String city) {
+        cityDropDown.setValue(city).pressEnter();
+        return this;
+    }
+
+    public UserInfoPage clickSubmit() {
         submitButton.click();
         return this;
     }
+
     public UserInfoPage checkResult(String key, String value) {
         $(".table-responsive").$(byText(key)).parent().shouldHave(text(value));
         return this;
