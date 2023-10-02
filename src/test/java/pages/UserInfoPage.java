@@ -7,7 +7,6 @@ import pages.components.CalendarComponent;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class UserInfoPage {
 
@@ -17,7 +16,8 @@ public class UserInfoPage {
             firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             userEmailInput = $("#userEmail"),
-            genderWrapper = $(".custom-control-label"),
+            genderWrapper = $("#genterWrapper"),
+            setBirthDate = $("#dateOfBirthInput"),
             userNumberInput = $("#userNumber"),
             subjectsInput = $("#subjectsInput"),
             hobbiesCheckboxes = $("#hobbiesWrapper"),
@@ -28,13 +28,7 @@ public class UserInfoPage {
             submitButton = $(".btn-primary");
 
 
-    public UserInfoPage openPage() {
-        open("/automation-practice-form");
-        titleLabel.shouldHave(text("Student Registration"));
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
-        return this;
-    }
+
 
     public UserInfoPage setFirstName(String value) {
         firstNameInput.setValue(value);
@@ -51,8 +45,8 @@ public class UserInfoPage {
         return this;
     }
 
-    public UserInfoPage setGender() {
-        genderWrapper.click();
+    public UserInfoPage setGender(String gender) {
+        genderWrapper.$(byText(gender)).click();
         return this;
     }
 
@@ -62,11 +56,8 @@ public class UserInfoPage {
     }
 
     public UserInfoPage setDateOfBirth(String day, String month, String year) {
-        $("#dateOfBirthInput").click();
-        calendar.setDate("12", "August", "1993");
-//        $(".react-datepicker__month-select").selectOption(5);
-//        $(".react-datepicker__year-select").selectOption("1993");
-//        $(".react-datepicker__day--012").click();
+        setBirthDate.click();
+        calendar.setDate(day, month, year);
         return this;
     }
 
@@ -85,7 +76,7 @@ public class UserInfoPage {
         return this;
     }
 
-    public UserInfoPage setAdress(String value) {
+    public UserInfoPage setAddress(String value) {
         currentAddressTextArea.setValue(value);
         return this;
     }

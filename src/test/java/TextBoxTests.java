@@ -20,10 +20,5 @@ public class TextBoxTests extends tests.TestBase {
                 .checkResult("Yekaterinburg");
 
 
-
-
-
-
-
     }
 }

@@ -3,10 +3,8 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byId;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.executeJavaScript;
+
 
 public class TextBoxPage {
 
@@ -21,8 +19,6 @@ public class TextBoxPage {
     public TextBoxPage openPage() {
         open("/text-box");
         mainHeaderText.shouldHave(text("Text Box"));
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
         return this;
     }
 

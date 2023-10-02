@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Test;
 
 
-
 public class DemoQaFormTests extends tests.TestBase {
 
     @Test
@@ -10,13 +9,13 @@ public class DemoQaFormTests extends tests.TestBase {
                 .setFirstName("Dmitry")
                 .setLastName("Volkov")
                 .setUserEmail("DmitryVolkov@mail.ru")
-                .setGender()
+                .setGender("Male")
                 .setUserNumber("9003030333")
                 .setDateOfBirth("12", "August", "1993")
                 .setSubjectsInput("Maths")
                 .setHobbies("Music")
                 .UploadPicture("1.bmp")
-                .setAdress("86 Tatishcheva str., Yekaterinburg, Sverdlovsk region, 620028")
+                .setAddress("86 Tatishcheva str., Yekaterinburg, Sverdlovsk region, 620028")
                 .setState("Haryana")
                 .setCity("Karnal")
                 .clickSubmit();
