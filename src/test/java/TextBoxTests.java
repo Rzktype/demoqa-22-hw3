@@ -1,11 +1,12 @@
 import org.junit.jupiter.api.Test;
-import pages.TextBoxPage;
+import pages.components.ChecksOutputInfoComponent;
 
 public class TextBoxTests extends tests.TestBase {
 
 
     @Test
     void fillFormTest() {
+        ChecksOutputInfoComponent checkOutput = new ChecksOutputInfoComponent();
 // test
         textBoxPage.openPage()
                 .setUserName("Dmitry Volkov")
@@ -14,10 +15,10 @@ public class TextBoxTests extends tests.TestBase {
                 .setPermanentAddress("86 Tatishcheva str., Yekaterinburg, Sverdlovsk region, 620028")
                 .clickButton();
 // checks
-        textBoxPage.checkResult("Dmitry Volkov")
-                .checkResult("DmitryVolkov@mail.ru")
-                .checkResult("Moscow")
-                .checkResult("Yekaterinburg");
+        checkOutput.checkOutputResult("Name", "Dmitry Volkov")
+                .checkOutputResult("Email", "DmitryVolkov@mail.ru")
+                .checkOutputResult("Current Address", "Moscow")
+                .checkOutputResult("Permananet Address", "Yekaterinburg");
 
 
     }

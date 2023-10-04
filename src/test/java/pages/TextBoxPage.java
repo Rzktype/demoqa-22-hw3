@@ -1,12 +1,13 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import pages.components.ClearPageComponent;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 
-public class TextBoxPage {
+public class TextBoxPage extends ClearPageComponent {
 
     SelenideElement mainHeaderText = $(".main-header"),
             userNameInput = $("#userName"),
@@ -14,11 +15,12 @@ public class TextBoxPage {
             currentAddressTextArea = $("#currentAddress"),
             permanentAddressTextArea = $("#permanentAddress"),
             submitButton = $(".btn-primary"),
-    resultBlock = $("#output");
+            resultBlock = $("#output");
 
     public TextBoxPage openPage() {
         open("/text-box");
         mainHeaderText.shouldHave(text("Text Box"));
+        removeBanners();
         return this;
     }
 
@@ -41,12 +43,12 @@ public class TextBoxPage {
         permanentAddressTextArea.setValue(value);
         return this;
     }
+
     public TextBoxPage clickButton() {
         submitButton.click();
         return this;
     }
-    public TextBoxPage checkResult(String value) {
-        resultBlock.shouldHave(text(value));
-        return this;}
+
+
 }
 

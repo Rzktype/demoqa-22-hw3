@@ -3,12 +3,14 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
+import pages.components.ClearPageComponent;
+
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class UserInfoPage {
+public class UserInfoPage extends ClearPageComponent {
 
     CalendarComponent calendar = new CalendarComponent();
     /// SelenideElements
@@ -28,6 +30,12 @@ public class UserInfoPage {
             submitButton = $(".btn-primary");
 
 
+    public UserInfoPage openPage() {
+        open("/automation-practice-form");
+        titleLabel.shouldHave(text("Student Registration"));
+        removeBanners();
+        return this;
+    }
 
 
     public UserInfoPage setFirstName(String value) {
@@ -93,11 +101,6 @@ public class UserInfoPage {
 
     public UserInfoPage clickSubmit() {
         submitButton.click();
-        return this;
-    }
-
-    public UserInfoPage checkResult(String key, String value) {
-        $(".table-responsive").$(byText(key)).parent().shouldHave(text(value));
         return this;
     }
 

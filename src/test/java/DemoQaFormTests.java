@@ -1,10 +1,13 @@
 import org.junit.jupiter.api.Test;
+import pages.components.ChecksOutputInfoComponent;
 
 
 public class DemoQaFormTests extends tests.TestBase {
+    ChecksOutputInfoComponent tableUserInfo = new ChecksOutputInfoComponent();
 
     @Test
     void fillFormTest() {
+
         userInfoPage.openPage()
                 .setFirstName("Dmitry")
                 .setLastName("Volkov")
@@ -20,7 +23,7 @@ public class DemoQaFormTests extends tests.TestBase {
                 .setCity("Karnal")
                 .clickSubmit();
 
-        userInfoPage.checkResult("Student Name", "Dmitry Volkov")
+        tableUserInfo.checkResult("Student Name", "Dmitry Volkov")
                 .checkResult("Student Email", "DmitryVolkov@mail.ru")
                 .checkResult("Gender", "Male")
                 .checkResult("Mobile", "9003030333")
